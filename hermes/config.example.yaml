@@ -1,0 +1,17 @@
+# Example configuration for pstack-muse-hermes deployment.
+# Copy to config.yaml and edit with your values. Never commit config.yaml.
+
+# Path to your Hermes installation
+hermes_home: /home/ubuntu/.hermes
+
+# Profiles to deploy skills to (one per line, indented with "- ")
+profiles:
+  - kai
+  - george
+  - ned
+  - fred
+
+# Which profile acts as the orchestrator (gets arena + swarm).
+# If none of your profiles is named "orchestrator", the first
+# profile in the list above is used.
+orchestrator_profile: fred
