@@ -9,6 +9,66 @@ Different tasks want different models. A cheap fast model is fine for bulk inves
 
 A **seat** is a named role with a model assignment and a reasoning-effort level. Skills reference seats, not specific models — so you can swap models without rewriting every skill.
 
+## The seats, in plain English
+
+There are three seats. Here's what each one means:
+
+### `frontier` — your best thinking
+
+This is the model you trust with hard calls. When something needs judgment — not just output, but *a decision* — it goes here.
+
+- **Use for:** bug-fix root-cause judgment, interrogate reviewer 1, arena cross-judge, swarm final synthesis
+- **Effort:** high. You're paying for the best reasoning the model can do.
+- **Pick:** whatever your strongest available model is. If you only have one model, it fills this seat.
+
+### `worker` — fast and cheap
+
+This is the model that does the bulk work. Implementation, exploration, running the same thing 50 times to get a benchmark. It doesn't need to be brilliant — it needs to be fast and follow instructions.
+
+- **Use for:** bug-fix implementation (after frontier decides the fix), perf-issue implementation, swarm per-slice work
+- **Effort:** medium. Enough to follow multi-step instructions reliably.
+- **Pick:** your fastest/cheapest capable model. Can be the same as frontier if you only have one.
+
+### `reviewer-2` — the outsider
+
+This is the whole point of adversarial review. Reviewer 2 **must** be a different model family from frontier. Two instances of the same model share the same blind spots, the same training biases, the same failure modes. The review becomes theater — they'll agree with each other because they think the same way.
+
+- **Use for:** interrogate reviewer 2 (the independent check)
+- **Effort:** high. This review needs to be as thorough as reviewer 1's.
+- **Pick:** a model from a different provider/family than frontier. If you only have one model family available, you can still run interrogate — but note in your head that the "independent" review isn't truly independent.
+
+## Sensible defaults
+
+**If you're on Muse.ai with a single model:**
+
+```yaml
+frontier:   your-model @ high effort
+worker:     your-model @ medium effort
+reviewer-2: your-model @ high effort   # NOTE: same family — review diversity is reduced
+```
+
+This works fine for everything except true adversarial review. You'll still get value from interrogate's structured checklist, just not the cross-family disagreement detection.
+
+**If you have two model families:**
+
+```yaml
+frontier:   family-A-strongest @ high effort
+worker:     family-A-fast @ medium effort
+reviewer-2: family-B-strongest @ high effort
+```
+
+This is the full setup. Interrogate gets real teeth — when the two reviewers disagree, that's signal.
+
+**If you're on Hermes with local models:**
+
+```yaml
+frontier:   your-largest-local-model @ high effort
+worker:     your-fastest-local-model @ medium effort
+reviewer-2: <cloud API or second local family> @ high effort
+```
+
+Local-only setups can fill reviewer-2 with a cloud API call for high-stakes reviews, or accept reduced diversity.
+
 ## How to define your seats
 
 Create a table like this for your setup:
