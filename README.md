@@ -1,6 +1,6 @@
 # pstack for Muse.ai and Hermes
 
-**Version 1.0.0** — see [CHANGELOG.md](CHANGELOG.md) for what's included.
+**Version 1.1.0** — see [CHANGELOG.md](CHANGELOG.md) for what's included.
 
 Opinionated agent playbooks — bug fixing, performance work, adversarial review, parallel experimentation, and bulk execution — ported from [pstack](https://github.com/cursor/plugins/tree/main/pstack) (MIT, © 2026 Lauren Tan / poteto) for the Muse.ai platform and Hermes agent profiles.
 
