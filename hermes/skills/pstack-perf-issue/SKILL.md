@@ -11,6 +11,16 @@ port_notes: "Adapted from upstream perf-issue playbook + benchmark-checklist ski
 
 # Perf issue
 
+## Checklist (read this first — full playbook below)
+1. Baseline trace on the real surface first; vet it with the benchmark checklist.
+2. Hypotheses come from measurements, not from reading source.
+3. Mantras cheapest-first: don't do it, don't redo it, do it less, later, in background, concurrently, cheaper. Stop when the target is met.
+4. One change at a time; post-fix trace before the next attempt.
+5. Compare the artifacts; "inconclusive" is not a pass.
+6. PR cites one primary number + delta. Draft PR only.
+Reply: baseline, post-fix number, delta, artifact path.
+
+
 **You own the measurement story. Plan, review, verify the numbers.** Tie every fix to a measurement, don't read source instead of measuring.
 
 ## Steps
