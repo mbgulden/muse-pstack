@@ -1,5 +1,12 @@
 # Changelog — pstack for Muse.ai and Hermes
 
+## 1.1.0 (2026-10-24)
+
+Playbook adoption pass: every Hermes playbook now leads with a one-screen checklist, and interrogate verdicts from local worker profiles are first-pass until second-witnessed.
+
+- **One-screen checklists (Hermes side)** — `pstack-bug-fix`, `pstack-perf-issue`, `pstack-interrogate`, `pstack-arena`, and `pstack-swarm` each open with a short checklist distilled from the playbook's own steps, inserted right after the title. The full playbook text below each checklist is unchanged.
+- **Interrogate fleet note (both sides)** — on the local worker profiles, an interrogate pass is FIRST-PASS only: the synthesized verdict does not land until the reviewer second-witnesses it in the kanban review step, verifying the claims mechanically (files, counts, test runs) before the verdict is posted or acted on. The note rides inside the Hermes checklist and as a standalone note in `skills/muse-interrogate/SKILL.md`.
+
 ## 1.0.0 (2026-10-19)
 
 Initial public release. Ported from [pstack](https://github.com/cursor/plugins/tree/main/pstack) (MIT, © 2026 Lauren Tan / poteto).
