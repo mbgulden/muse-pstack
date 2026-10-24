@@ -11,6 +11,15 @@ port_notes: "Adapted from upstream arena skill. Cursor Task-tool/subagent_type/r
 
 # Arena
 
+## Checklist (read this first — full playbook below)
+1. Frame first: one identical brief for every candidate + a 3-6 criterion rubric.
+2. Each candidate gets its own output location — never shared mutable state.
+3. Fan out all runners in parallel; note dropouts, proceed with N-1.
+4. Cross-judge (frontier-reviewer) scores against the rubric; never judge while candidates still write.
+5. Pick the base criterion by criterion; prefer the cleaner boundary on ties.
+6. Graft the best 1-2 things per loser by hand; verify the synthesized artifact.
+
+
 **Fred (orchestrator) only.** Open a task list with one entry per phase (Frame, Fan out, Cross-judge, Pick, Graft, Verify) before launching anything.
 
 ## Phase A — Frame
