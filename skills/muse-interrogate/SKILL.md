@@ -17,6 +17,8 @@ port_notes: "Adapted from upstream. The 4 reference files are embedded inline so
 
 Spawn independent reviewers to adversarially review code changes. The adversarial signal comes from reviewer independence, not assigned personas. The deliverable is a synthesized verdict. Do NOT auto-apply changes.
 
+**Fleet note (Oct 23, 2026):** on the local worker profiles, an interrogate pass is FIRST-PASS only. Its synthesized verdict does not land until Muse second-witnesses it in the kanban review step — Muse verifies the claims mechanically (files, counts, test runs) before the verdict is posted or acted on. This mirrors the standing reviewer pattern: the worker synthesizes, Muse witnesses.
+
 ## Step 1, Scope
 
 Identify what to review from context:
