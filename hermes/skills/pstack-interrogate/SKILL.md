@@ -11,6 +11,17 @@ port_notes: "Adapted from upstream interrogate skill + 4 references. Cursor Task
 
 # Interrogate
 
+## Checklist (read this first — full playbook below)
+1. Scope: the exact diff/files, packaged with the context reviewers need.
+
+**Fleet note (Oct 23, 2026):** on the Hermes worker profiles, an interrogate pass is FIRST-PASS only. The synthesized verdict does not land until the reviewer second-witnesses it in the kanban review step — the reviewer verifies the claims mechanically (files, counts, test runs) before the verdict is posted or acted on.
+2. Intent: one paragraph; if unsure, ask before proceeding.
+3. Two reviewers in parallel (frontier reviewer + worker-model @ high), read-only, same rubric.
+4. Synthesize: merge duplicates; findings both reviewers raised are the highest signal.
+5. Bucket every finding: Act on / Consider / Noted / Dismissed, with a one-line rationale.
+6. NEVER auto-apply changes.
+
+
 Two independent reviewers adversarially review code changes. The adversarial signal comes from reviewer diversity, not assigned personas. The deliverable is a synthesized verdict. **Do NOT auto-apply changes.**
 
 ## Step 1 — Scope
