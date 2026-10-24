@@ -11,6 +11,14 @@ port_notes: "Adapted from upstream swarm skill. Cursor Task-tool/subagent_type/e
 
 # Swarm
 
+## Checklist (read this first — full playbook below)
+1. Frame: done predicate + shape (slices / race / mix); declare the race rule BEFORE spawning.
+2. Every brief stands alone: goal, exact slice, how to verify, report format (PASS / ISSUES / BLOCKED with evidence).
+3. Fan out in parallel; each worker gets its own writable output.
+4. Aggregate: drop results missing the named SHAs/method, respawn once; a gap is NOT a pass.
+5. One consolidated report: result table, issue one-liners, gaps — no raw worker dumps.
+
+
 **Fred (orchestrator) only.** Open a task list with one entry per phase (Frame, Fan out, Aggregate, Report) before launching anything.
 
 ## Phase A — Frame
