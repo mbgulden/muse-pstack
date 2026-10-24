@@ -11,6 +11,16 @@ port_notes: "Adapted from upstream bug-fix playbook + bugbot-triage reference. C
 
 # Bug fix
 
+## Checklist (read this first — full playbook below)
+1. Reproduce it yourself on the real surface before touching code.
+2. Binary-search the cause; one hypothesis survives, confirmed by runtime evidence.
+3. Plan the fix; smallest change the evidence justifies.
+4. Verify on the SAME surface — the original repro now passes.
+5. Commits: failing repro first, fix on top.
+6. Draft PR only. Never merge your own PR.
+Reply: what broke, root cause, fix, verification (repro output verbatim).
+
+
 **You own this task. Plan, review, verify.** Be scientific. Every shipped line traces to runtime evidence. Belt-and-suspenders that "might help" is a hypothesis, not a fix. It does not ship. When evidence refutes a hypothesis, revert what it motivated. The smallest change the evidence justifies ships, nothing more.
 
 ## Steps
