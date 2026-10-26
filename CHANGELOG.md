@@ -1,5 +1,9 @@
 # Changelog — pstack for Muse.ai and Hermes
 
+## 1.2.1 (2026-10-26)
+
+- **README skills table completed** — the table now lists the four skills added in 1.2.0 (`create-verification-skill`, `maintain-verification-skill`, `in-your-own-words`, `tdd`), so the index matches what the release actually ships. No skill files changed.
+
 ## 1.2.0 (2026-10-26)
 
 The verification-skill pair and two more playbooks, each in both variants (Hermes `pstack-*` and Muse.ai `muse-*`). All four ported from upstream pstack at pinned SHA d4575673 (v0.15.28); provenance and port notes are in each file's frontmatter.
