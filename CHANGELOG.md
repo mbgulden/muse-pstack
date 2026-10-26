@@ -1,5 +1,14 @@
 # Changelog — pstack for Muse.ai and Hermes
 
+## 1.2.0 (2026-10-26)
+
+The verification-skill pair and two more playbooks, each in both variants (Hermes `pstack-*` and Muse.ai `muse-*`). All four ported from upstream pstack at pinned SHA d4575673 (v0.15.28); provenance and port notes are in each file's frontmatter.
+
+- **create-verification-skill (new)** — generate a project-local verification skill (`skills/verify-<app>/` in the project repo): interview the repo for its surface, run, drive, observe, and isolation answers; generate a control CLI (doctor / drive / cleanup) and a feature map. Ships with the worked feature-map example under `references/feature-map-example/` on both variants.
+- **maintain-verification-skill (new)** — the upkeep loop for a generated verification skill: parallel source readers per feature, one live session driving every feature, at most one PR of proven corrections. Outcomes are stated as clean / changed / blocked.
+- **in-your-own-words (new)** — restate the problem before acting: the user's goals, the underlying issue, and what done looks like, with no hypotheses smuggled in. The restatement is the first artifact; a correction replaces the read completely.
+- **tdd (new)** — test-first bug-fix discipline for bugs with a cheap local test path: make the broken behavior an executable failing test before touching production code, fix until it passes, and skip the new test when the test path is impractical.
+
 ## 1.1.0 (2026-10-24)
 
 Playbook adoption pass: every Hermes playbook now leads with a one-screen checklist, and interrogate verdicts from local worker profiles are first-pass until second-witnessed.
