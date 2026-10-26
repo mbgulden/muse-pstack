@@ -1,6 +1,6 @@
 # pstack for Muse.ai and Hermes
 
-**Version 1.2.0** — see [CHANGELOG.md](CHANGELOG.md) for what's included.
+**Version 1.2.1** — see [CHANGELOG.md](CHANGELOG.md) for what's included.
 
 Opinionated agent playbooks — bug fixing, performance work, adversarial review, parallel experimentation, and bulk execution — ported from [pstack](https://github.com/cursor/plugins/tree/main/pstack) (MIT, © 2026 Lauren Tan / poteto) for the Muse.ai platform and Hermes agent profiles.
 
@@ -47,6 +47,10 @@ When a task arrives: classify it (muse-mode) → run the playbook → verify mec
 | `muse-swarm` | Bulk parallelizable work. Framed fan-out with a done predicate. |
 | `muse-create-formal-verification-skill` | Write a new skill with formal verification. |
 | `muse-maintain-formal-verification-skill` | Maintain an existing formally-verified skill. |
+| `muse-create-verification-skill` | Write a new verification skill for a project (control CLI, doctor, feature map). |
+| `muse-maintain-verification-skill` | Keep a project's verification skill and feature map honest: audit, drive, correct. |
+| `muse-in-your-own-words` | Restate the problem plainly before acting — goals, underlying issue, what done looks like. |
+| `muse-tdd` | Test-first bug fixing: the broken behavior as a failing test before the fix. |
 
 ## Usage examples
 
