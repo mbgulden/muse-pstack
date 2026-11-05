@@ -1,6 +1,6 @@
 # pstack for Muse.ai and Hermes
 
-**Version 1.2.1** — see [CHANGELOG.md](CHANGELOG.md) for what's included.
+**Version 1.3.0** — see [CHANGELOG.md](CHANGELOG.md) for what's included.
 
 Opinionated agent playbooks — bug fixing, performance work, adversarial review, parallel experimentation, and bulk execution — ported from [pstack](https://github.com/cursor/plugins/tree/main/pstack) (MIT, © 2026 Lauren Tan / poteto) for the Muse.ai platform and Hermes agent profiles.
 
@@ -51,6 +51,7 @@ When a task arrives: classify it (muse-mode) → run the playbook → verify mec
 | `muse-maintain-verification-skill` | Keep a project's verification skill and feature map honest: audit, drive, correct. |
 | `muse-in-your-own-words` | Restate the problem plainly before acting — goals, underlying issue, what done looks like. |
 | `muse-tdd` | Test-first bug fixing: the broken behavior as a failing test before the fix. |
+| `muse-loop-discipline` | Iterative build/verify work as a measured loop: frozen spec, verified fixtures, diff against reference and last approved version, defect classes promoted to standing checks, stop after two clean rounds. |
 
 ## Usage examples
 
@@ -105,7 +106,7 @@ A few favorites:
 
 ## Provenance
 
-Every skill file carries its upstream source, SHA, and port notes in the frontmatter. See [UPSTREAM.md](UPSTREAM.md) for the complete port manifest — what's ported, what's deferred, and the MIT license attribution.
+Every ported skill file carries its upstream source, SHA, and port notes in the frontmatter. `muse-loop-discipline` / `pstack-loop-discipline` is original to this repo (distilled Nov 4, 2026, from an iterative artwork loop), not an upstream port. See [UPSTREAM.md](UPSTREAM.md) for the complete port manifest — what's ported, what's deferred, and the MIT license attribution.
 
 ## Updating
 
