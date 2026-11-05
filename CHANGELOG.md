@@ -1,5 +1,11 @@
 # Changelog — pstack for Muse.ai and Hermes
 
+## 1.3.0 (2026-11-04)
+
+One new skill, in both variants (Hermes `pstack-*` and Muse.ai `muse-*`). Unlike the ported skills in this repo, loop-discipline is original: distilled Nov 4, 2026, from an iterative artwork loop where versions v0–v7 were counted and every defect attributed to who caught it. No provenance block is added to the skill files — the staged-vs-source diff is the variant name/branding only.
+
+- **loop-discipline (new)** — run iterative build/verify work as a measured loop: freeze one spec as the source of truth; verify the fixture set against its source before building on it; measure before approximating (and validate the instrument against a second method); diff each round against both the reference and the last approved version; promote every defect class into a standing check; stop only after two consecutive clean rounds over the full fixture set, with a metrics file counting versions and who caught each defect.
+
 ## 1.2.1 (2026-10-26)
 
 - **README skills table completed** — the table now lists the four skills added in 1.2.0 (`create-verification-skill`, `maintain-verification-skill`, `in-your-own-words`, `tdd`), so the index matches what the release actually ships. No skill files changed.
