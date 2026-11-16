@@ -2,8 +2,8 @@
 name: pstack-arena
 description: "Spawn N parallel candidates at the same task with an identical brief, cross-judge them, pick a base, graft the strongest parts of the losers in, verify. Use for 'arena this', 'throw it in the arena', or when one attempt at a non-trivial artifact would lock in the wrong shape. Fred (orchestrator) only."
 upstream: pstack/skills/arena/SKILL.md
-upstream_sha: 99743e9c151c8537cbbf1f98bb38f34ef3368453
-port_notes: "Adapted from upstream arena skill. Cursor Task-tool/subagent_type/run_in_background mechanics replaced with Hermes orchestration (Fred dispatches workers). Model slugs (claude-opus/grok) replaced with your model configuration arena runner panel: A=worker-model @ medium, B=qwen3.8-27b-ned @ medium, C=worker-model @ high, optional D=gguf @ medium; cross-judge = the orchestrator. your model configurationc path replaced with your model configuration. /tmp/arena paths kept with workspace preference noted."
+upstream_sha: 6b0300214a09fd6029cfb7077043125758cd1fd2
+port_notes: "Adapted from upstream arena skill. Cursor Task-tool/subagent_type/run_in_background mechanics replaced with Hermes orchestration (Fred dispatches workers). Model slugs (claude-opus/grok) replaced with your model configuration arena runner panel: A=worker-model @ medium, B=qwen3.8-27b-ned @ medium, C=worker-model @ high, optional D=gguf @ medium; cross-judge = the orchestrator. your model configurationc path replaced with your model configuration. /tmp/arena paths kept with workspace preference noted. Runner/judge fallback hardening pulled 2026-11-09: upstream's slug fallback adapted to seats — drop-and-say-so, top-up to two runners, cross-judge never from the lead's family, skip-judge-and-say-so."
 ---
 > **Provenance:** Ported from [pstack](https://github.com/cursor/plugins/tree/main/pstack) (MIT, © 2026 Lauren Tan / poteto).
 > Adapted for Hermes agent profiles. See [UPSTREAM.md](../../UPSTREAM.md).
@@ -34,6 +34,7 @@ Every candidate gets the same prompt, so the prompt is the contract.
    - Runner C: `worker-model` @ high
    - Runner D (optional): gguf alias @ medium — add when the arena covers multiple design directions
    - Use the same seat N times when the work is generation-bound rather than judgment-sensitive.
+   - Fallback when a seat's family has no usable default, or the default seat is also unavailable: use the closest available seat of the same family, or drop the seat and say so. If dropped seats leave fewer than two runners, add runners until there are two (or one when the panel line has a single entry), each on a remaining runner's seat or the lead's own seat.
 4. Give each candidate its own output location (a git worktree where possible, otherwise `~/workspace/arena-<slug>/candidate-<n>/`), so candidates never share mutable state.
 
 ## Phase B — Fan out
@@ -46,9 +47,11 @@ If a candidate produces no output, proceed with N-1 and note the dropout.
 
 After all candidates complete, the cross-judge is `frontier-reviewer` (per your model configuration — must be a different family from the runners). The judge sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale. Run the judge in parallel with your own reading in Phase D. Don't start judging while candidates are still writing.
 
+The judge is strictly never from the lead's family: a seat that inherits the lead's model never judges. Work the pool in order — if a pool seat won't run, fall back to the closest available seat of that entry's family, then to the other-family entries of the default pool. If no judge seat runs, skip the judge: Phase D picks the base alone, and the synthesis note says so.
+
 ## Phase D — Pick a base
 
-Read every candidate end to end before picking. Score each against the rubric criterion by criterion, not on holistic feel, and compare with the cross-judge. Agreement confirms the pick. Disagreement means bias or an ambiguous rubric — read both rationales before deciding.
+Read every candidate end to end before picking. Score each against the rubric criterion by criterion, not on holistic feel, and compare with the cross-judge when Phase C ran one. Agreement confirms the pick. Disagreement means bias or an ambiguous rubric — read both rationales before deciding.
 
 Pick the base a future maintainer can extend most easily without breaking invariants. When two feel tied, prefer the cleaner boundary or smaller API.
 
@@ -64,4 +67,4 @@ Verify the synthesized artifact like any other output. If verification finds a p
 
 ## Output
 
-One synthesized artifact, with a short synthesis note alongside: the base and why, the cross-judge's verdict, each graft with its source candidate, what was rejected and why, any convergence or dropouts, and the verification result.
+One synthesized artifact, with a short synthesis note alongside: the base and why, the cross-judge's verdict or that Phase C skipped the judge, each graft with its source candidate, what was rejected and why, any convergence or dropouts, and the verification result.
